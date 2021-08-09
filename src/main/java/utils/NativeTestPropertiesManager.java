@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 public class NativeTestPropertiesManager {
 
-    public static final String EXPECTED_CHECKBOX_STATUS;
     public static final String EXPECTED_CHECKBOX_TEXT;
     public static final String BUDGET_ACTIVITY;
     public static final User RANDOM_USER;
@@ -18,7 +17,6 @@ public class NativeTestPropertiesManager {
         String username = email.substring(0,index);
         ResourceBundle rb = ResourceBundle.getBundle("nativeTest");
         BUDGET_ACTIVITY = rb.getString("budgetActivity");
-        EXPECTED_CHECKBOX_STATUS = rb.getString("expectedCheckBoxStatus");
         EXPECTED_CHECKBOX_TEXT = rb.getString("expectedCheckBoxText");
         RANDOM_USER = new User(email,
             username,
