@@ -18,19 +18,23 @@ public class BaseTest implements IDriver {
     @Override
     public AppiumDriver getDriver() { return appiumDriver; }
 
-    @Parameters({"platformName","appType","deviceName","browserName","app"})
-    @BeforeMethod(alwaysRun = true)
-    public void setUp(String platformName, String appType, String deviceName, @Optional("") String browserName, @Optional("") String app) throws Exception {
-        System.out.println("Before: app type - " + appType);
-        setAppiumDriver(platformName, deviceName, browserName, app);
-        setPageObject(appType, appiumDriver);
+    public IPageObject getPo() {
+        return po;
     }
 
-    @AfterMethod(alwaysRun = true)
+    @Parameters({"platformName","appType","deviceName","browserName","app"})
+    @BeforeSuite(alwaysRun = true)
+    public void setUp(String platformName, String appType, String deviceName, @Optional("") String browserName, @Optional("") String app) throws Exception {
+        System.out.println("Before: app type - "+appType);
+        setAppiumDriver(platformName, deviceName, browserName, app);
+        setPageObject(appType, appiumDriver);
+
+    }
+
+    @AfterSuite(alwaysRun = true)
     public void tearDown() throws Exception {
         System.out.println("After");
         appiumDriver.closeApp();
-        appiumDriver.quit();
     }
 
     private void setAppiumDriver(String platformName, String deviceName, String browserName, String app){
@@ -49,16 +53,15 @@ public class BaseTest implements IDriver {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+
         // Timeouts tuning
         appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     }
 
-    public IPageObject getPageObject() {
-        return this.po;
-    }
-
     private void setPageObject(String appType, AppiumDriver appiumDriver) throws Exception {
         po = new PageObject(appType, appiumDriver);
     }
+
+
 }
