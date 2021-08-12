@@ -12,5 +12,4 @@ public class WebTestPropertiesManager {
         GOOGLE_PAGE = rb.getString("googleURL");
         QUERY = rb.getString("query");
     }
-
 }

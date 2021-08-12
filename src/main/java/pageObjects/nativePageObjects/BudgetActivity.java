@@ -1,8 +1,11 @@
 package pageObjects.nativePageObjects;
 
+import static data.Constants.MAX_WAIT_TIME;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,8 +14,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BudgetActivity extends BaseActivity {
 
     @AndroidFindBy(xpath = findTextView + "[@text='BudgetActivity']")
-    private WebElement budgetActionBarTextView;
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@label='Budget']")
+    private WebElement budgetActionBarText;
+
     @AndroidFindBy(id = appPackageName + "add_new_expense")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Add']")
     private WebElement addNewExpenseBtn;
 
     public BudgetActivity(AppiumDriver appiumDriver) {
@@ -21,11 +27,11 @@ public class BudgetActivity extends BaseActivity {
     }
 
     public void waitUntilActivityIsLoaded() {
-        new WebDriverWait(appiumDriver, 60)
+        new WebDriverWait(appiumDriver, MAX_WAIT_TIME)
             .until(ExpectedConditions.visibilityOf(addNewExpenseBtn));
     }
 
     public String getActivityName() {
-        return budgetActionBarTextView.getText();
+        return budgetActionBarText.getText();
     }
 }

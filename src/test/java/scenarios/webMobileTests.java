@@ -19,7 +19,9 @@ public class webMobileTests extends BaseTest {
         googleMainPage.performSearch(WebTestPropertiesManager.QUERY);
         List<WebElement> results = googleMainPage.getSearchResults();
         Assert.assertTrue(results.size() > 0);
-        Assert.assertTrue(results.get(1)
+        Assert.assertTrue(results.stream()
+                                 .findFirst()
+                                 .get()
                                  .getText()
                                  .toLowerCase()
                                  .contains(WebTestPropertiesManager.QUERY.toLowerCase()));
