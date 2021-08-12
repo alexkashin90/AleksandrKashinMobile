@@ -2,7 +2,7 @@
 <b>1.</b> Paste your EPAM Mobile Cloud API Key into "src/test/resources/cloudTest.properties" file. <br>
 <b>2.</b> Manually install android (src/main/resources/EPAMTestApp.apk) or iOS (src/main/resources/EPAMTestApp1.ipa) app onto the targeted devices. <br> 
 devices specified in xml files: <br>
-android device's udid: "0A211JEC222740"  <br>
+android device's udid: "0A071FDD4005QL"  <br>
 iOS device's udid: "3e50758dd2e1179a014ee7b51dc4285d73118107"<br>
 <b>3. </b>Run tests:
 
