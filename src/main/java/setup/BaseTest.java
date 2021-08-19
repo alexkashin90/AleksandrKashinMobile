@@ -7,6 +7,7 @@ import static utils.CloudTestPropertiesManager.APPIUM_HUB;
 import static utils.CloudTestPropertiesManager.PROJECT_NAME;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 import pageObjects.PageObject;
@@ -39,13 +40,13 @@ public class BaseTest implements IDriver {
         String udid, String appPackage, String appActivity, String bundleId) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //mandatory capabilities
-        capabilities.setCapability("platformName", platformName);
-        capabilities.setCapability("udid", udid);
-        capabilities.setCapability("browserName", browserName);
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, platformName);
+        capabilities.setCapability(MobileCapabilityType.UDID, udid);
+        capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, browserName);
         capabilities.setCapability("chromedriverDisableBuildCheck", "true");
 
         if (app.endsWith(".apk")) {
-            capabilities.setCapability("app", (new File(app)).getAbsolutePath());
+            capabilities.setCapability(MobileCapabilityType.APP, (new File(app)).getAbsolutePath());
         }
         // Capabilities for test of Android native app on EPAM Mobile Cloud
         capabilities.setCapability("appPackage", appPackage);

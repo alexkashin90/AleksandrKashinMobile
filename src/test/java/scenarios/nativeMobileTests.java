@@ -22,7 +22,7 @@ public class nativeMobileTests extends BaseTest {
         BudgetActivity budgetActivity = loginActivity.loginUser(NativeTestPropertiesManager.RANDOM_USER);
         budgetActivity.waitUntilActivityIsLoaded();
         Assert.assertTrue(budgetActivity.getActivityName().contains(NativeTestPropertiesManager.BUDGET_ACTIVITY)
-            , "Expected text is not equal to actual");
+            , "Actual name of activity does not contain a word 'Budget'");
         System.out.println("Test of registration a new user in an app is done");
     }
 }
