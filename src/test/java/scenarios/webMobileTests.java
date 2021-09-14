@@ -1,6 +1,7 @@
 package scenarios;
 
 import java.util.List;
+import java.util.Objects;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -19,7 +20,10 @@ public class webMobileTests extends BaseTest {
         googleMainPage.performSearch(WebTestPropertiesManager.QUERY);
         List<WebElement> results = googleMainPage.getSearchResults();
         Assert.assertTrue(results.size() > 0);
-        Assert.assertTrue(results.get(1)
+        Assert.assertTrue(Objects.requireNonNull(results.stream()
+                                                        .filter(webElement -> webElement.getText().length() > 0)
+                                                        .findFirst()
+                                                        .orElse(null))
                                  .getText()
                                  .toLowerCase()
                                  .contains(WebTestPropertiesManager.QUERY.toLowerCase()));
